@@ -38,15 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.success) {
                 resultPanel.classList.add('result-success');
                 resultPanel.classList.remove('result-error', 'result-warning');
-                resultHeader.innerHTML = '✅ <span style="color: var(--success-light);">Acceso Concedido</span>';
+                resultHeader.innerHTML = '<span style="color: var(--success-light);">Acceso Concedido</span>';
 
                 // Build message with all results if UNION was used
                 let msg = data.message;
                 if (data.all_results && data.all_results.length > 1) {
-                    msg += '<br><br><strong>📋 Todos los resultados encontrados:</strong><br>';
+                    msg += '<br><br><strong>Todos los resultados encontrados:</strong><br>';
                     msg += '<table class="users-table" style="margin-top: 0.5rem;">';
                     msg += '<thead><tr>';
-                    // Get column names from first row
                     const cols = Object.keys(data.all_results[0]);
                     cols.forEach(col => {
                         msg += `<th>${escapeHtml(col)}</th>`;
@@ -66,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 resultPanel.classList.add('result-error');
                 resultPanel.classList.remove('result-success', 'result-warning');
-                resultHeader.innerHTML = '❌ <span style="color: var(--danger-light);">Acceso Denegado</span>';
+                resultHeader.innerHTML = '<span style="color: var(--danger-light);">Acceso Denegado</span>';
                 resultMessage.innerHTML = escapeHtml(data.message);
             }
 
@@ -75,12 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (err) {
             resultPanel.className = 'result-panel visible result-warning';
-            resultHeader.innerHTML = '⚠️ <span style="color: var(--warning-light);">Error de Conexión</span>';
+            resultHeader.innerHTML = '<span style="color: var(--warning-light);">Error de Conexión</span>';
             resultMessage.textContent = 'No se pudo conectar con el servidor. Verifica que XAMPP esté corriendo.';
             resultQuery.textContent = '(error de red)';
         } finally {
             loginBtn.disabled = false;
-            loginBtn.innerHTML = '🚀 Iniciar Sesión';
+            loginBtn.innerHTML = 'Iniciar Sesión';
         }
     });
 
@@ -131,13 +130,9 @@ function showToast(message, type = 'info') {
     const container = document.getElementById('toastContainer');
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-
-    const icons = { success: '✅', error: '❌', info: 'ℹ️' };
-    toast.innerHTML = `<span>${icons[type] || 'ℹ️'}</span> ${escapeHtml(message)}`;
-
+    toast.textContent = message;
     container.appendChild(toast);
 
-    // Remove after animation completes
     setTimeout(() => {
         toast.remove();
     }, 3000);

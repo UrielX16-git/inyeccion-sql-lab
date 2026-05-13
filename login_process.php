@@ -1,8 +1,4 @@
 <?php
-// =====================================================
-// SQL Injection Lab — Procesamiento de Login
-// INTENCIONALMENTE VULNERABLE — Solo para demostración
-// =====================================================
 
 header('Content-Type: application/json; charset=utf-8');
 require_once 'config.php';

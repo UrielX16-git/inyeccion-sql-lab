@@ -1,7 +1,4 @@
 <?php
-// =====================================================
-// SQL Injection Lab — Configuración de Base de Datos
-// =====================================================
 
 $DB_HOST = 'localhost';
 $DB_USER = 'root';

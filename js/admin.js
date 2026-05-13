@@ -117,7 +117,7 @@ async function executeCustomSQL() {
         } else {
             showToast(data.message, 'error');
             content.innerHTML = `<p style="color: var(--danger-light); font-size: 0.85rem;">
-                ❌ ${escapeHtml(data.message)}</p>`;
+                ${escapeHtml(data.message)}</p>`;
         }
 
         // Refresh table in case data changed
@@ -153,14 +153,14 @@ async function refreshUsers() {
         } else {
             tbody.innerHTML = `
                 <tr class="empty-row">
-                    <td colspan="4">⚠️ No hay usuarios en la base de datos. Usa "Reiniciar Base de Datos" para crear los usuarios por defecto.</td>
+                    <td colspan="4">No hay usuarios en la base de datos. Usa "Reiniciar Base de Datos" para crear los usuarios por defecto.</td>
                 </tr>
             `;
         }
     } catch (err) {
         document.getElementById('usersTableBody').innerHTML = `
             <tr class="empty-row">
-                <td colspan="4">❌ Error al conectar con la base de datos</td>
+                <td colspan="4">Error al conectar con la base de datos</td>
             </tr>
         `;
     }
@@ -178,11 +178,13 @@ async function refreshStats() {
         const data = await res.json();
 
         document.getElementById('statUserCount').textContent = data.success ? data.count : '—';
-        document.getElementById('statDbStatus').textContent = data.success ? '✅' : '❌';
+        document.getElementById('statDbStatus').innerHTML = data.success
+            ? '<span class="status-dot online"></span>OK'
+            : '<span class="status-dot offline"></span>Error';
         document.getElementById('statTableName').textContent = 'usuarios';
     } catch (err) {
-        document.getElementById('statUserCount').textContent = '❌';
-        document.getElementById('statDbStatus').textContent = '❌';
+        document.getElementById('statUserCount').textContent = '—';
+        document.getElementById('statDbStatus').innerHTML = '<span class="status-dot offline"></span>Error';
         document.getElementById('statTableName').textContent = '—';
     }
 }
@@ -199,10 +201,7 @@ function showToast(message, type = 'info') {
     const container = document.getElementById('toastContainer');
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-
-    const icons = { success: '✅', error: '❌', info: 'ℹ️' };
-    toast.innerHTML = `<span>${icons[type] || 'ℹ️'}</span> ${escapeHtml(message)}`;
-
+    toast.textContent = message;
     container.appendChild(toast);
 
     setTimeout(() => {

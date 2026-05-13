@@ -6,29 +6,29 @@
     <title>SQL Injection Lab — Admin Panel</title>
     <meta name="description" content="Panel de administración del laboratorio educativo de inyección SQL">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%2338bdac'/><rect x='30' y='25' rx='6' width='40' height='50' fill='none' stroke='white' stroke-width='8'/></svg>">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <a href="login.php" class="header-brand">
-            <span class="logo-icon">🛡️</span>
+            <span class="logo-icon"></span>
             <h1>SQL Injection Lab</h1>
         </a>
         <nav class="header-nav">
-            <a href="login.php" class="nav-link">🔐 Login</a>
-            <a href="admin.php" class="nav-link active">⚙️ Admin Panel</a>
+            <a href="login.php" class="nav-link">Login</a>
+            <a href="admin.php" class="nav-link active">Admin Panel</a>
         </nav>
     </header>
 
     <main class="main-container">
         <!-- Disclaimer -->
         <div class="disclaimer-banner">
-            ⚠️ ENTORNO EDUCATIVO — Panel de administración para preparar y restaurar el entorno de demostración.
+            Entorno educativo — Panel de administración para preparar y restaurar el entorno de demostración.
         </div>
 
         <div class="page-title">
-            <h2>⚙️ Panel de Administración</h2>
+            <h2>Panel de Administración</h2>
             <p>Gestiona la base de datos, crea usuarios y prepara el entorno para las demostraciones de inyección SQL</p>
         </div>
 
@@ -52,27 +52,27 @@
         <div class="admin-grid">
             <!-- Card: Reiniciar Base de Datos -->
             <div class="action-card">
-                <div class="action-icon">🔄</div>
+                <div class="action-icon"></div>
                 <h4>Reiniciar Base de Datos</h4>
                 <p>Elimina y recrea la tabla de usuarios con los datos iniciales por defecto (admin, profesor, estudiante, invitado).</p>
                 <button class="btn btn-primary btn-block" onclick="adminAction('reset_db')">
-                    🔄 Reiniciar Todo
+                    Reiniciar Todo
                 </button>
             </div>
 
             <!-- Card: Vaciar Tabla -->
             <div class="action-card">
-                <div class="action-icon">🗑️</div>
+                <div class="action-icon"></div>
                 <h4>Vaciar Tabla de Usuarios</h4>
                 <p>Borra todos los registros de la tabla sin eliminar la tabla en sí. Simula el efecto del ataque DELETE.</p>
                 <button class="btn btn-danger btn-block" onclick="adminAction('clear_users')">
-                    🗑️ Vaciar Tabla
+                    Vaciar Tabla
                 </button>
             </div>
 
             <!-- Card: Crear Usuario Manual -->
             <div class="action-card">
-                <div class="action-icon">➕</div>
+                <div class="action-icon"></div>
                 <h4>Crear Usuario Manual</h4>
                 <p>Agrega un nuevo usuario con nombre y contraseña personalizados.</p>
                 <div class="action-inputs">
@@ -80,43 +80,43 @@
                     <input type="text" id="manualPass" class="form-input" placeholder="Contraseña">
                 </div>
                 <button class="btn btn-success btn-block" onclick="createManualUser()">
-                    ➕ Crear Usuario
+                    Crear Usuario
                 </button>
             </div>
 
             <!-- Card: Usuario Aleatorio -->
             <div class="action-card">
-                <div class="action-icon">🎲</div>
+                <div class="action-icon"></div>
                 <h4>Crear Usuario Aleatorio</h4>
                 <p>Genera automáticamente un usuario con nombre y contraseña aleatorios.</p>
                 <button class="btn btn-info btn-block" onclick="adminAction('random_user')">
-                    🎲 Generar Aleatorio
+                    Generar Aleatorio
                 </button>
             </div>
 
             <!-- Card: X Usuarios Aleatorios -->
             <div class="action-card">
-                <div class="action-icon">👥</div>
+                <div class="action-icon"></div>
                 <h4>Crear Múltiples Usuarios</h4>
                 <p>Genera la cantidad especificada de usuarios con datos aleatorios.</p>
                 <div class="action-inputs">
                     <input type="number" id="bulkCount" class="form-input" placeholder="Cantidad (ej: 10)" min="1" max="100" value="5">
                 </div>
                 <button class="btn btn-info btn-block" onclick="createBulkUsers()">
-                    👥 Generar Usuarios
+                    Generar Usuarios
                 </button>
             </div>
 
             <!-- Card: Ejecutar SQL Personalizado -->
             <div class="action-card">
-                <div class="action-icon">💻</div>
+                <div class="action-icon"></div>
                 <h4>Ejecutar SQL Personalizado</h4>
                 <p>Ejecuta una consulta SQL directamente contra la base de datos. Solo para administración del entorno.</p>
                 <div class="action-inputs">
                     <input type="text" id="customSQL" class="form-input" placeholder="SELECT * FROM usuarios" style="font-family: var(--font-mono);">
                 </div>
                 <button class="btn btn-warning btn-block" onclick="executeCustomSQL()">
-                    💻 Ejecutar SQL
+                    Ejecutar SQL
                 </button>
             </div>
         </div>
@@ -124,10 +124,10 @@
         <!-- Users Table -->
         <div class="glass-card">
             <div class="card-header">
-                <span class="card-icon">👁️</span>
+                <span class="card-icon">DB</span>
                 <h3>Usuarios en la Base de Datos</h3>
                 <button class="btn btn-outline btn-sm" onclick="refreshUsers()" style="margin-left: auto;">
-                    🔄 Refrescar
+                    Refrescar
                 </button>
             </div>
             <div class="users-table-container">
@@ -152,7 +152,7 @@
         <!-- Custom SQL Result -->
         <div class="glass-card" id="sqlResultCard" style="margin-top: 1.5rem; display: none;">
             <div class="card-header">
-                <span class="card-icon">💻</span>
+                <span class="card-icon">SQL</span>
                 <h3>Resultado de SQL Personalizado</h3>
             </div>
             <div class="result-query" style="margin-bottom: 1rem;">
