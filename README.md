@@ -1,8 +1,8 @@
-# SQL Injection Lab
+# Inyección SQL Lab
 
 Laboratorio educativo para demostrar vulnerabilidades de inyección SQL en aplicaciones web. Diseñado para uso didáctico.
 
-> **⚠️ Advertencia:** Esta aplicación es intencionalmente vulnerable. Úsala únicamente en entornos locales y aislados.
+> **⚠️ Advertencia:** Esta aplicación es intencionalmente vulnerable. Para uso únicamente en entornos locales y aislados.
 
 ---
 
@@ -21,7 +21,7 @@ Incluye un **panel de administración** para gestionar la base de datos, crear u
 
 ## Requisitos
 
-- [XAMPP](https://www.apachefriends.org/) (Apache + MySQL/MariaDB + PHP)
+- XAMPP (Apache + MySQL/MariaDB + PHP)
 - Navegador web moderno
 
 ---
